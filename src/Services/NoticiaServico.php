@@ -55,6 +55,26 @@ final class NoticiaServico
         }
     }
 
+    public function listarPorCategoria(int $categoriaId): array
+    {
+        $sql = "SELECT noticias.id, noticias.titulo, noticias.data,
+                       noticias.resumo, usuarios.nome AS autor
+                FROM noticias
+                LEFT JOIN usuarios ON noticias.usuario_id = usuarios.id
+                WHERE noticias.categoria_id = :categoria_id
+                ORDER BY noticias.data DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":categoria_id", $categoriaId);
+            $consulta->execute();
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao listar notícias por categoria");
+        }
+    }
+
     public function listarTodos(TipoUsuario $tipoUsuario, int $usuarioId): array
     {
         if ($tipoUsuario === TipoUsuario::ADMIN) {

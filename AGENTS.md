@@ -147,7 +147,9 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   que retorna todas as notícias com autor para admin e apenas as do usuário
   informado para editor; `buscarPorId()`, que carrega os dados e o autor da
   notícia, permite qualquer notícia para admin e restringe editor às notícias
-  próprias; `listarDestaques()`, que retorna as notícias com destaque; e
+  próprias; `listarDestaques()`, que retorna as notícias com destaque;
+  `listarOutrasPublicas()`, que lista notícias públicas excluindo a atualmente
+  aberta; `listarPorCategoria()`, que retorna título, data, resumo e autor; e
   `inserir(Noticia $noticia)`. Atualização e exclusão de notícias ainda não
   estão implementadas no serviço.
 - `index.php` e `includes/todas.php` exibem dinamicamente as notícias em
@@ -158,6 +160,10 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   autor, imagem e texto; quando o autor não está associado, usa “Equipe
   Microblog”. Abaixo, `includes/todas-noticias.php` lista as demais notícias
   em caixas clicáveis contendo apenas título, resumo e data.
+- `includes/cabecalho.php` carrega todas as categorias do banco para o menu.
+  `noticias-por-categoria.php` valida o ID, exibe os dados da categoria e
+  lista somente as notícias associadas, com data formatada, autor ou “Equipe
+  Microblog”, resumo e link para a notícia.
 - `admin/noticia-insere.php` integra categorias, validação, upload e inserção.
 - `admin/noticia-atualiza.php` recebe o ID por `GET` (o link em
   `admin/noticias.php` usa `noticia-atualiza.php?id=...`), exige login e carrega
@@ -165,10 +171,10 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   categorias, deixando selecionada a categoria associada à notícia. O formulário
   ainda não processa nem persiste a atualização e seu botão está desabilitado.
 - `admin/noticia-exclui.php` ainda é uma página provisória.
-- As páginas públicas `noticias-por-categoria.php` e `resultados.php` e alguns
-  conteúdos de navegação/listagem ainda contêm dados ou marcação provisórios
-  estáticos. Confira a implementação atual antes de assumir que o README
-  descreve funcionalidades dinâmicas já concluídas.
+- A página pública `resultados.php` e alguns conteúdos de navegação/listagem
+  ainda contêm dados ou marcação provisórios estáticos. Confira a implementação
+  atual antes de assumir que o README descreve funcionalidades dinâmicas já
+  concluídas.
 
 ## Orientações para alterações
 

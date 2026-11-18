@@ -6,3 +6,6 @@
 ### 2°Série de Prompts
 - Nesse exato instante faça a página noticia.php, ele deverá fazer a exibição das seguintes informações: data (formatada), autor, imagem e texto. No caso do autor, caso a notícia não tiver um autor associado a ela, deve ser exibido como alternativa o texto "Equipe Microblog".
 - Quando uma notícia está aberta, as outras notícias devem desaparecer totalmente, deixando só o titulo, o resumo e a data. Isso deve ser exibido de uma ordem de caixinhas de seleção e em cima deve ter o seguinte titulo "Todas as notícias".
+
+### 3°Série de Prompts
+- Chegou a vez da página noticias-por-categoria.php, faça exibição das notícias filtradas pela categoria escolhida no menu do site, deve ser exibido: título, data (formatada), autor e resumo. No caso do autor, caso a notícia não tenha um autor associado a ela, deve ser exibido como alternativa o texto "Equipe Microblog". Também configure o link dinâmico para abrir a página noticia.php quando clicar em cima da notícia. Atenção: primeiro, programe o arquivo includes/cabecalho.php para fazer com que o menu mostre todas as categorias existentes.

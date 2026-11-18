@@ -1,3 +1,21 @@
+<?php
+
+use Microblog\Helpers\Utils;
+use Microblog\Services\CategoriaServico;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$listaDeCategorias = [];
+$mensagemErroCategorias = '';
+
+try {
+    $categoriaServico = new CategoriaServico();
+    $listaDeCategorias = $categoriaServico->listarTodos();
+} catch (Throwable $e) {
+    Utils::registrarLog($e);
+    $mensagemErroCategorias = 'Não foi possível carregar as categorias.';
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
 
@@ -28,10 +46,23 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                <li><a class="dropdown-item" href="noticias-por-categoria.php?id=1">Desenvolvimento</a></li>
-                <li><a class="dropdown-item" href="noticias-por-categoria.php?id=2">Tecnologia</a></li>
-                
+                <?php if ($mensagemErroCategorias !== ''): ?>
+                  <li>
+                    <span class="dropdown-item-text text-danger">
+                      <?= Utils::escaparHtml($mensagemErroCategorias) ?>
+                    </span>
+                  </li>
+                <?php elseif ($listaDeCategorias === []): ?>
+                  <li><span class="dropdown-item-text">Nenhuma categoria cadastrada.</span></li>
+                <?php else: ?>
+                  <?php foreach ($listaDeCategorias as $itemCategoria): ?>
+                    <li>
+                      <a class="dropdown-item" href="noticias-por-categoria.php?id=<?= (int) $itemCategoria['id'] ?>">
+                        <?= Utils::escaparHtml($itemCategoria['nome']) ?>
+                      </a>
+                    </li>
+                  <?php endforeach; ?>
+                <?php endif; ?>
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="admin/index.php"><i class="bi bi-lock-fill"></i> Área administrativa</a></li>
