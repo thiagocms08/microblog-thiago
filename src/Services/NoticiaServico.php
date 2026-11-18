@@ -3,6 +3,7 @@ namespace Microblog\Services;
 
 use Exception;
 use Microblog\Database\ConexaoBD;
+use Microblog\Enums\Destaque;
 use Microblog\Enums\TipoUsuario;
 use Microblog\Helpers\Utils;
 use Microblog\Models\Noticia;
@@ -16,6 +17,24 @@ final class NoticiaServico
     public function __construct()
     {
         $this->conexao = ConexaoBD::getConexao();
+    }
+
+    public function listarDestaques(): array
+    {
+        $sql = "SELECT id, titulo, resumo, imagem
+                FROM noticias
+                WHERE destaque = :destaque
+                ORDER BY data DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":destaque", Destaque::SIM->value);
+            $consulta->execute();
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao listar notícias em destaque");
+        }
     }
 
     public function listarTodos(TipoUsuario $tipoUsuario, int $usuarioId): array

@@ -1,35 +1,3 @@
-# Prompts para o gerenciamento de noticias
-
-1. Pedir pra IA analisar o projeto no estado atual
-
-Analise todas as classes utilizadas até o momento (contidas na pasta src), em especial
-a classe NoticiaServico e a classe Noticia.
-
-Veja também as páginas administrativas, em especial usuários.php e categorias.php.
-
-Identifique padrões, como nomes de métodos, propriedades, variáveis, arquivos, namespaces.
-
-Aguarde o próximo comando.
-
-
----
-
-2. Criação do método listarTodos
-
-Crie na classe NoticiaServico o método listarTodos, de maneira semelhante ao que foi feito em CategoriaServico e UsuarioServico.
-
-Atenção: a consulta SQL deve no caso de usuários admin, carregar todas as noticias incluindo o nome do autor delas. Se for um usuário editor, a consulta deve carregar apenas as noticias dele próprio, sem incluir o nome do autor.
-
-
-
-
-
-
-
-
-
-
-Tarefas:
-
-- visualizar noticias e nome do autor delas (admin)
-- visualizar noticias próprias (editor)
+# Prompts
+- Faça uma analise de todo o repositório com o objetivo de obter conhecimento do projeto como um todo, a linguagem de programação utilizada, os padrões que os módulos utilizam e a estrutura de diretórios e subdiretórios. Espere o próximo prompt.
+- Faça a página index.php, ele deverá fazer a exibição das notícias cadastradas que estão no estado de "destaque" dentro no banco de dados, mostrando o titulo, a imagem, o resumo, e o link dinâmico configurado para abrir a página noticia.php quando clicar em cima da notícia. Antes disso, com base no que você analisou no prompt anterior, faça o módulo "todos.php" localizado no diretório "includes", ele deve exibir as notícias com destaque.

@@ -147,8 +147,12 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   que retorna todas as notícias com autor para admin e apenas as do usuário
   informado para editor; `buscarPorId()`, que carrega os dados e o autor da
   notícia, permite qualquer notícia para admin e restringe editor às notícias
-  próprias; e `inserir(Noticia $noticia)`. Atualização e exclusão de notícias
-  ainda não estão implementadas no serviço.
+  próprias; `listarDestaques()`, que retorna as notícias com destaque; e
+  `inserir(Noticia $noticia)`. Atualização e exclusão de notícias ainda não
+  estão implementadas no serviço.
+- `index.php` e `includes/todas.php` exibem dinamicamente as notícias em
+  destaque, com título, imagem, resumo e link para `noticia.php`. O módulo
+  compartilhado também aparece nas demais páginas públicas que o incluem.
 - `admin/noticia-insere.php` integra categorias, validação, upload e inserção.
 - `admin/noticia-atualiza.php` recebe o ID por `GET` (o link em
   `admin/noticias.php` usa `noticia-atualiza.php?id=...`), exige login e carrega
@@ -156,11 +160,10 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   categorias, deixando selecionada a categoria associada à notícia. O formulário
   ainda não processa nem persiste a atualização e seu botão está desabilitado.
 - `admin/noticia-exclui.php` ainda é uma página provisória.
-- As páginas públicas (`index.php`, `noticia.php`,
-  `noticias-por-categoria.php` e `resultados.php`) e alguns conteúdos de
-  navegação/listagem ainda contêm dados ou marcação provisórios estáticos.
-  Confira a implementação atual antes de assumir que o README descreve
-  funcionalidades dinâmicas já concluídas.
+- As páginas públicas (`noticia.php`, `noticias-por-categoria.php` e
+  `resultados.php`) e alguns conteúdos de navegação/listagem ainda contêm dados
+  ou marcação provisórios estáticos. Confira a implementação atual antes de
+  assumir que o README descreve funcionalidades dinâmicas já concluídas.
 
 ## Orientações para alterações
 

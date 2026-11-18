@@ -10,7 +10,7 @@ O **Microblog** é dividido em duas áreas principais:
 
 ### 1. Área pública (raiz do projeto)
 Voltada aos leitores do portal:
-- **Página inicial (`index.php`):** exibe notícias em destaque e a listagem geral de notícias.
+- **Página inicial (`index.php`):** exibe notícias marcadas como destaque no banco, com título, imagem, resumo e link para a notícia.
 - **Notícia completa (`noticia.php`):** apresenta o texto completo, a data de publicação, o autor, a categoria e a imagem da notícia.
 - **Notícias por categoria (`noticias-por-categoria.php`):** filtra as publicações de acordo com a categoria escolhida no menu.
 - **Busca de notícias (`resultados.php` e `js/busca.js`):** pesquisa notícias por termo com atualização dinâmica no navegador.
@@ -25,10 +25,10 @@ Restrita a usuários autenticados, com permissões diferentes conforme o tipo de
 
 ## Ponto de partida para as aulas
 
-Na versão inicial do projeto:
-- As páginas públicas e administrativas já contam com toda a estrutura HTML/Bootstrap e exibem **dados estáticos provisórios**.
+Na versão atual do projeto:
+- A página inicial e o módulo compartilhado `includes/todas.php` carregam as notícias em destaque do banco. As demais páginas públicas ainda contêm conteúdo estático provisório.
 - A pasta `src/` traz classes iniciais de conexão com o banco (`ConexaoBD`), utilitários e validações (`Utils` e `Validacoes`), enumerações (`Destaque` e `TipoUsuario`) e modelos (`Categoria`, `Noticia` e `Usuario`).
-- Ao longo das aulas, construiremos e ajustaremos os **namespaces**, o **autoload com Composer**, os **modelos**, as **classes de serviço (CRUD com PDO)**, o **controle de acesso com sessões** e a integração completa das páginas e da busca dinâmica.
+- O projeto utiliza **namespaces**, **autoload com Composer**, **modelos**, **serviços com PDO** e **controle de acesso por sessão**. A busca dinâmica ainda não está implementada.
 
 ---
 
