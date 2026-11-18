@@ -171,10 +171,12 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   categorias, deixando selecionada a categoria associada à notícia. O formulário
   ainda não processa nem persiste a atualização e seu botão está desabilitado.
 - `admin/noticia-exclui.php` ainda é uma página provisória.
-- A página pública `resultados.php` e alguns conteúdos de navegação/listagem
-  ainda contêm dados ou marcação provisórios estáticos. Confira a implementação
-  atual antes de assumir que o README descreve funcionalidades dinâmicas já
-  concluídas.
+- `resultados.php` recebe o termo de busca por POST e consulta títulos através
+  de `NoticiaServico::buscarPorTitulo()`. `js/busca.js` envia as pesquisas com
+  `fetch` e atualiza o painel de resultados no cabeçalho.
+- Alguns conteúdos de navegação/listagem ainda contêm dados ou marcação
+  provisórios estáticos. Confira a implementação atual antes de assumir que o
+  README descreve funcionalidades dinâmicas já concluídas.
 
 ## Orientações para alterações
 

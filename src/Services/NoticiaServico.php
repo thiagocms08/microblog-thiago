@@ -75,6 +75,24 @@ final class NoticiaServico
         }
     }
 
+    public function buscarPorTitulo(string $termo): array
+    {
+        $sql = "SELECT id, titulo
+                FROM noticias
+                WHERE titulo LIKE :titulo
+                ORDER BY data DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":titulo", "%" . $termo . "%");
+            $consulta->execute();
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao pesquisar notícias");
+        }
+    }
+
     public function listarTodos(TipoUsuario $tipoUsuario, int $usuarioId): array
     {
         if ($tipoUsuario === TipoUsuario::ADMIN) {
