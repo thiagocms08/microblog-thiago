@@ -1,10 +1,10 @@
 <?php
-
 use Microblog\Helpers\Utils;
 use Microblog\Services\UsuarioServico;
 
-require_once __DIR__ . "../../vendor/autoload.php";
-$id = Utils::normalizarEntrada($_GET['id'] ?? null, "inteiro");
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$id = Utils::normalizarEntrada($_GET['id'] ?? null, 'inteiro');
 Utils::verificarId($id);
 
 try {
@@ -12,7 +12,10 @@ try {
     $usuario->excluir($id);
     header("location:usuarios.php");
     exit;
-} catch (Throwable $erro) {
-    Utils::registrarLog($erro);
-    Utils::alertaErro("Não foi possível excluir o usuario. Tente novamente!");
+} catch (Throwable $e) {
+    Utils::registrarLog($e);
+    Utils::alertaErro("Não foi possível excluir o usuário. Tente novamente");
 }
+
+
+

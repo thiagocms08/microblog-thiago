@@ -1,5 +1,4 @@
 <?php
-
 namespace Microblog\Models;
 
 use Microblog\Enums\Destaque;
