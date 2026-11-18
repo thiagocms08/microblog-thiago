@@ -153,6 +153,11 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
 - `index.php` e `includes/todas.php` exibem dinamicamente as notícias em
   destaque, com título, imagem, resumo e link para `noticia.php`. O módulo
   compartilhado também aparece nas demais páginas públicas que o incluem.
+- `noticia.php` valida o ID recebido por GET e carrega os dados completos da
+  notícia por `NoticiaServico::buscarPorIdPublico()`. Exibe data formatada,
+  autor, imagem e texto; quando o autor não está associado, usa “Equipe
+  Microblog”. Abaixo, `includes/todas-noticias.php` lista as demais notícias
+  em caixas clicáveis contendo apenas título, resumo e data.
 - `admin/noticia-insere.php` integra categorias, validação, upload e inserção.
 - `admin/noticia-atualiza.php` recebe o ID por `GET` (o link em
   `admin/noticias.php` usa `noticia-atualiza.php?id=...`), exige login e carrega
@@ -160,10 +165,10 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   categorias, deixando selecionada a categoria associada à notícia. O formulário
   ainda não processa nem persiste a atualização e seu botão está desabilitado.
 - `admin/noticia-exclui.php` ainda é uma página provisória.
-- As páginas públicas (`noticia.php`, `noticias-por-categoria.php` e
-  `resultados.php`) e alguns conteúdos de navegação/listagem ainda contêm dados
-  ou marcação provisórios estáticos. Confira a implementação atual antes de
-  assumir que o README descreve funcionalidades dinâmicas já concluídas.
+- As páginas públicas `noticias-por-categoria.php` e `resultados.php` e alguns
+  conteúdos de navegação/listagem ainda contêm dados ou marcação provisórios
+  estáticos. Confira a implementação atual antes de assumir que o README
+  descreve funcionalidades dinâmicas já concluídas.
 
 ## Orientações para alterações
 

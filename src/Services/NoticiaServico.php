@@ -37,6 +37,24 @@ final class NoticiaServico
         }
     }
 
+    public function listarOutrasPublicas(int $noticiaId): array
+    {
+        $sql = "SELECT id, titulo, resumo, data
+                FROM noticias
+                WHERE id <> :id
+                ORDER BY data DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $noticiaId);
+            $consulta->execute();
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao listar outras notícias");
+        }
+    }
+
     public function listarTodos(TipoUsuario $tipoUsuario, int $usuarioId): array
     {
         if ($tipoUsuario === TipoUsuario::ADMIN) {
@@ -68,6 +86,25 @@ final class NoticiaServico
         } catch (PDOException $e) {
             Utils::registrarLog($e);
             throw new Exception("Erro ao listar notícias");
+        }
+    }
+
+    public function buscarPorIdPublico(int $id): ?array
+    {
+        $sql = "SELECT noticias.id, noticias.data, noticias.titulo, noticias.texto,
+                       noticias.imagem, usuarios.nome AS autor
+                FROM noticias
+                LEFT JOIN usuarios ON noticias.usuario_id = usuarios.id
+                WHERE noticias.id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id);
+            $consulta->execute();
+            return $consulta->fetch() ?: null;
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao buscar notícia por ID.");
         }
     }
 
